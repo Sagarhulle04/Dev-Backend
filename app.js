@@ -48,7 +48,7 @@ app.get("/user", userAuth, async (req, res) => {
 connectDB()
   .then(() => {
     console.log("Mongodb connected successfully");
-    app.listen(3000, "0.0.0.0", () => {
+    app.listen(3000, () => {
       console.log("Server Running on port 3000");
     });
   })

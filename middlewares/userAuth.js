@@ -11,7 +11,7 @@ export const userAuth = async (req, res, next) => {
       return res.status(401).send("Please Re-Login");
     }
 
-    const decodedMessage = await jwt.verify(token, process.env.SECRET_KEY);
+    const decodedMessage = await jwt.verify(token, "SagarHulle04");
     const { _id } = decodedMessage;
 
     const user = await User.findById(_id);
