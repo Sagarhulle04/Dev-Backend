@@ -45,6 +45,10 @@ authRouter.post("/login", async (req, res) => {
       return res.status(401).send("Invalid Credentails");
     }
 
+    if (!email || !password) {
+      res.status(400).send("Email and Password are required");
+    }
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (isPasswordValid) {
