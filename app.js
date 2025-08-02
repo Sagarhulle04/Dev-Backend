@@ -7,7 +7,6 @@ import profileRouter from "./routes/profile.js";
 import userRouter from "./routes/user.js";
 import cors from "cors";
 import dotenv from "dotenv";
-import http from "http";
 
 dotenv.config();
 
@@ -25,16 +24,12 @@ app.use(
 // Importing Models
 import User from "./models/user.js";
 import requestRouter from "./routes/request.js";
-import { initializeSocket } from "./utils/initializeSocket.js";
 
 // routes
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
-
-const server = http.createServer(app);
-initializeSocket(server);
 
 app.get("/user", userAuth, async (req, res) => {
   try {
@@ -52,7 +47,7 @@ app.get("/user", userAuth, async (req, res) => {
 connectDB()
   .then(() => {
     console.log("Mongodb connected successfully");
-    server.listen(3000, () => {
+    app.listen(3000, () => {
       console.log("Server Running on port 3000");
     });
   })
