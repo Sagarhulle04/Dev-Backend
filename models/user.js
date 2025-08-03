@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: [true, "Email already exists"],
       lowercase: true,
       trim: true,
       validate(value) {
@@ -68,6 +68,14 @@ const userSchema = new mongoose.Schema(
     },
     skills: {
       type: [String],
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    verificationCode: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }
